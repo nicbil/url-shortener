@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UrlController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('{any?}', fn () => view('app'))->where('any', '.*');
+Route::post('/api/add_url', [UrlController::class, 'addUrl']);
+Route::post('/api/get_shorten_urls', [UrlController::class, 'getShortenUrls']);
